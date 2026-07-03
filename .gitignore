@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+.streamlit/secrets.toml
+*.db
+*.log
+tunnel_output.txt
+server_log.txt
+streamlit_log.txt
+.DS_Store

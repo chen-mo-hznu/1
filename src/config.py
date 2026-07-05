@@ -1,20 +1,10 @@
-﻿import os
-import tempfile
-
+import os, tempfile
+from dotenv import load_dotenv
+load_dotenv()
 class Config:
-    try:
-        import streamlit as st
-        LLM_API_KEY = st.secrets.get("LLM_API_KEY", "")
-        LLM_BASE_URL = st.secrets.get("LLM_BASE_URL", "")
-        LLM_MODEL = st.secrets.get("LLM_MODEL", "qwen3.5")
-    except ImportError:
-        from dotenv import load_dotenv
-        load_dotenv()
-        LLM_API_KEY = os.getenv("LLM_API_KEY", "your_api_key_here")
-        LLM_BASE_URL = os.getenv("LLM_BASE_URL", "https://api.llm.ustc.edu.cn/v1")
-        LLM_MODEL = os.getenv("LLM_MODEL", "qwen3.5")
-
-    DB_PATH = os.path.join(tempfile.gettempdir(), "ha_db", "health.db")
-    KNOWLEDGE_DIR = os.path.join(tempfile.gettempdir(), "ha_db", "knowledge")
-
+    LLM_API_KEY = os.environ.get('LLM_API_KEY') or 'your_api_key_here'
+    LLM_BASE_URL = os.environ.get('LLM_BASE_URL') or 'https://api.llm.ustc.edu.cn/v1'
+    LLM_MODEL = os.environ.get('LLM_MODEL') or 'qwen3.5'
+    DB_PATH = os.path.join(tempfile.gettempdir(), 'ha_db', 'health.db')
+    KNOWLEDGE_DIR = os.path.join(tempfile.gettempdir(), 'ha_db', 'knowledge')
 config = Config()

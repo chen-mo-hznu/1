@@ -1,4 +1,5 @@
-import os
+﻿import os
+import tempfile
 
 class Config:
     try:
@@ -13,9 +14,7 @@ class Config:
         LLM_BASE_URL = os.getenv("LLM_BASE_URL", "https://api.llm.ustc.edu.cn/v1")
         LLM_MODEL = os.getenv("LLM_MODEL", "qwen3.5")
 
-    DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "user_data", "health.db")
-    KNOWLEDGE_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "medical_knowledge")
-    VECTOR_DB_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "user_data", "vector_db")
-    EXPORT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "exports")
+    DB_PATH = os.path.join(tempfile.gettempdir(), "ha_db", "health.db")
+    KNOWLEDGE_DIR = os.path.join(tempfile.gettempdir(), "ha_db", "knowledge")
 
 config = Config()

@@ -1,6 +1,7 @@
 """数据库管理"""
 import sqlite3
 import json
+import os
 from datetime import datetime, date
 from typing import List, Optional, Dict, Any
 from src.config import config
@@ -12,6 +13,9 @@ from src.data_models import (
 class Database:
     def __init__(self):
         self.db_path = config.DB_PATH
+        db_dir = os.path.dirname(self.db_path)
+        if not os.path.exists(db_dir):
+            os.makedirs(db_dir, exist_ok=True)
         self._init_db()
 
     def _get_conn(self):
